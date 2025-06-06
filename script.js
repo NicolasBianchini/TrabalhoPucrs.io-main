@@ -49,7 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <button class="reply-btn" style="display: inline-block;" data-question-id="${question.id}">Responder</button>
         `;
         questionItem.querySelector('.reply-btn').classList.add('custom-reply-btn');
-        
+
         // Verifica se há respostas antes de adicioná-las à lista de perguntas
         if (question.responses && question.responses.length > 0) {
             question.responses.forEach(response => {
@@ -59,11 +59,11 @@ document.addEventListener('DOMContentLoaded', () => {
                 questionItem.appendChild(responseItem);
             });
         }
-        
+
         questionsList.appendChild(questionItem);
     }
-    
-    
+
+
 
     function createResponseForm(questionId) {
         const form = document.createElement('form');
@@ -82,10 +82,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 responseItem.classList.add('response');
                 responseItem.innerHTML = `<p>${response}</p>`;
                 questionItem.appendChild(responseItem);
-                
+
                 // Salva apenas a resposta
                 saveResponse(questionId, response);
-                
+
                 form.reset(); // Limpa o formulário após enviar a resposta
                 form.style.display = 'none'; // Oculta o formulário após o envio
             }
@@ -114,7 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     loadQuestions();
-    
+
 });
 
 
@@ -125,7 +125,7 @@ function togglePopout(popoutId) {
     for (var i = 0; i < popouts.length; i++) {
         if (popouts[i].classList.contains('show')) {
             popouts[i].classList.remove('show');
-            setTimeout(function(popout) {
+            setTimeout(function (popout) {
                 popout.style.display = 'none';
             }, 300, popouts[i]); // Atraso para permitir que a transição termine
         }
@@ -135,9 +135,59 @@ function togglePopout(popoutId) {
     var popout = document.getElementById(popoutId);
     if (!popout.classList.contains('show')) {
         popout.style.display = 'block';
-        setTimeout(function() {
+        setTimeout(function () {
             popout.classList.add('show');
         }, 10); // Atraso pequeno para permitir que o display seja aplicado antes da transição
+
+        // Previne scroll do body quando pop-up está aberto
+        document.body.style.overflow = 'hidden';
     }
 }
+
+/* Função para fechar pop-out */
+function closePopout(popoutId) {
+    var popout = document.getElementById(popoutId);
+    if (popout && popout.classList.contains('show')) {
+        popout.classList.remove('show');
+        setTimeout(function () {
+            popout.style.display = 'none';
+        }, 300);
+
+        // Restaura scroll do body
+        document.body.style.overflow = 'auto';
+    }
+}
+
+/* Fecha pop-up ao clicar fora dele */
+document.addEventListener('click', function (event) {
+    var popouts = document.getElementsByClassName("popout-content");
+    for (var i = 0; i < popouts.length; i++) {
+        if (popouts[i].classList.contains('show')) {
+            var popoutInner = popouts[i].querySelector('.popout-inner');
+            if (!popoutInner.contains(event.target)) {
+                popouts[i].classList.remove('show');
+                setTimeout(function (popout) {
+                    popout.style.display = 'none';
+                }, 300, popouts[i]);
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }
+});
+
+/* Fecha pop-up com tecla ESC */
+document.addEventListener('keydown', function (event) {
+    if (event.key === 'Escape') {
+        var popouts = document.getElementsByClassName("popout-content");
+        for (var i = 0; i < popouts.length; i++) {
+            if (popouts[i].classList.contains('show')) {
+                popouts[i].classList.remove('show');
+                setTimeout(function (popout) {
+                    popout.style.display = 'none';
+                }, 300, popouts[i]);
+                document.body.style.overflow = 'auto';
+            }
+        }
+    }
+});
 

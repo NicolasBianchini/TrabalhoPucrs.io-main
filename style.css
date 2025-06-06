@@ -4,25 +4,33 @@
     padding: 0;
     margin: 0;
     font-family: "Radio";
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 @font-face {
     font-family: "Radio";
-    src: url("font/RadioCanadaBig-VariableFont_wght.ttf");
+    src: url("font/RadioCanadaBig-VariableFont_wght.ttf") format('truetype');
+    font-display: swap;
 }
 
 body {
     background-color: whitesmoke;
     overflow-x: hidden;
+    line-height: 1.6;
 }
 
 nav {
     background-color: rgba(224, 224, 224, 0.329);
-    padding: 20px;
+    padding: 15px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    min-height: 60px;
+    flex-wrap: wrap;
 }
 
 /* NAV BAR */
@@ -34,72 +42,89 @@ nav {
 
 .cabecalho a {
     text-decoration: none;
-    font-size: 15px;
+    font-size: 16px;
+    transition: color 0.3s ease;
+}
+
+.cabecalho a:hover {
+    color: #DDB6AA;
 }
 
 .cabecalho1 a {
     color: black;
-    padding: 25px;
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .cabecalho2 a {
     color: black;
-    padding: 0px 20px 25px 0px;
+    padding: 10px 15px;
+    border-radius: 5px;
+    background-color: rgba(221, 182, 170, 0.1);
+    transition: background-color 0.3s ease;
 }
 
+.cabecalho2 a:hover {
+    background-color: rgba(221, 182, 170, 0.3);
+}
 
-/* IMAGEM MENTE FEMENINA  */
+/* IMAGEM PRINCIPAL */
 #pucrs {
-    width: 800px;
-    max-width: 100%;
-    max-height: 350px;
+    width: 100%;
+    max-width: 800px;
     height: auto;
-    display: flex;
-    margin: 0 auto;
+    display: block;
+    margin: 20px auto;
     border-radius: 13px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
+/* CONTAINER PRINCIPAL */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    text-align: center;
+}
 
 /* TEXTO PRINCIPAL */
-.container {
-    flex-direction: row;
-    text-align: center;
-}
-
-.intro {
-    flex: 1;
-    flex-direction: column;
-    justify-content: center;
-    text-align: center;
-    max-width: 100%;   
-}
-
 .texto-intro {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 20px 0;
 }
 
-
 .texto-intro p {
-    display: flex;
-    margin: 5px 0;
-    
     text-align: left;
-    max-width: 600px;
+    max-width: 800px;
+    width: 100%;
+    padding: 0 20px;
+    font-size: 16px;
+    line-height: 1.8;
 }
 
 #id-2 {
     text-align: center;
 }
 
-
-/* BOTOES DE CONTEUDO */
-.intro {
+.br-1 {
     text-align: center;
-    display: inline-block;
-    margin-right: 10px;
-    overflow: hidden;
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* SEÇÃO DOS CARDS */
+.intro {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin: 40px 0;
+    padding: 20px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .img-luto {
@@ -107,44 +132,136 @@ nav {
     border: none;
     cursor: pointer;
     text-align: center;
-    margin: 10px;
-}
-
-/* Estiliza o botão de fechar dentro do pop-out */
-.close-button {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    font-size: 24px;
-    cursor: pointer;
-}
-
-.img-luto img {
-    vertical-align: middle;
-    margin-right: 8px;
-    width: 250px;
-    height: 250px;
-    border-radius: 30px;
-    margin-bottom: 10px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
 .img-luto:hover {
     transform: translateY(-10px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
 }
 
-.intro p {
-    width: 400px;
-    max-width: 100%;
-    color: rgba(0, 0, 0, 0.671);
+.img-luto img {
+    width: 100%;
+    max-width: 250px;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-bottom: 15px;
 }
 
-/* CSS FORM */
+.img-luto p {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    margin: 0;
+}
 
+/* BOTÃO DE FECHAR */
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.close-button:hover {
+    background-color: rgba(0,0,0,0.9);
+}
+
+/* OVERLAY PARA POP-UPS */
+.popout-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.popout-overlay.show {
+    display: block;
+    opacity: 1;
+}
+
+/* POP-UPS */
+.popout-content {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #f5f5f5;
+    padding: 30px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+    z-index: 1000;
+    width: 90%;
+    max-width: 500px;
+    max-height: 85vh;
+    border-radius: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    overflow: hidden;
+}
+
+.show {
+    display: block;
+    opacity: 1;
+}
+
+.popout-inner {
+    position: relative;
+    height: 100%;
+}
+
+.popout-inner img {
+    width: 100%;
+    max-width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 15px;
+    margin-bottom: 20px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.scrollable-content {
+    max-height: calc(85vh - 280px);
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.scrollable-content p {
+    text-align: left;
+    line-height: 1.6;
+    color: #333;
+    font-size: 15px;
+}
+
+/* ESTILOS DO FORMULÁRIO */
 main {
     padding: 2rem;
-    width: 80%;
+    width: 90%;
+    max-width: 1000px;
     margin: 0 auto;
     text-align: center;
 }
@@ -154,9 +271,9 @@ main {
 }
 
 #new-question-form {
-    display: inline-block;
-    width: 30%;
-    margin: 0 auto; 
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
     text-align: left;
 }
 
@@ -166,10 +283,10 @@ main {
 
 #question-body {
     height: 200px;
+    resize: vertical;
 }
 
 #questions-list {
-    display: inline-block;
     text-align: left;
 }
 
@@ -179,27 +296,45 @@ form label, form input, form textarea {
     margin-bottom: 1rem;
 }
 
+form input, form textarea {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    font-family: inherit;
+    transition: border-color 0.3s ease;
+}
+
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: #DDB6AA;
+}
+
 form button {
     border-radius: 15px;
-    padding: 0.5rem 1rem;
+    padding: 12px 24px;
     background-color: #DDB6AA;
     color: #fff;
     border: none;
     cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+form button:hover {
+    background-color: #e09f8c;
 }
 
 #new-question-form label {
     display: block;
     margin-bottom: 10px;
+    font-weight: bold;
 }
 
 button[type="submit"] {
     display: block;
     margin: 20px auto;
-}
-
-form button:hover {
-    background-color: #e09f8c;
 }
 
 #questions {
@@ -210,287 +345,224 @@ form button:hover {
 #questions li {
     background-color: #fff;
     margin-bottom: 1rem;
-    padding: 1rem;
-    border: 1px solid #ccc;
+    padding: 1.5rem;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
 }
-
-/* PERSONALIZAR BOTAO RESPONDER */
 
 .custom-reply-btn {
     background-color: #DDB6AA;
     color: white;
-    padding: 7px 10px;
+    padding: 8px 16px;
     border: none;
     border-radius: 15px;
     cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
 }
 
-/* responsivo index */
-@media only screen and (min-width: 1440px) and (max-width: 1680px),
-       only screen and (min-width: 900px) and (max-width: 1050px),
-       (max-aspect-ratio: 16/10) {
-    .container {
-        max-width: 100%;
-    }
+.custom-reply-btn:hover {
+    background-color: #e09f8c;
+}
 
+/* =============== MEDIA QUERIES =============== */
+
+/* TABLETS E DISPOSITIVOS MÉDIOS */
+@media screen and (max-width: 1024px) {
     .intro {
-        flex: 1;
-        padding: 5px;
-        max-width: calc(100% - 25px);
-        text-align: center;
-        display: flex;
-        align-items: center;
-        margin-right: 0px;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        padding: 15px;
     }
-
-    .intro p {
-        width: auto;
-    }
-
     
+    .texto-intro p {
+        font-size: 15px;
+        padding: 0 15px;
+    }
+    
+    .container {
+        padding: 0 15px;
+    }
 }
 
-@media only screen and (max-width: 723px) {
+/* TABLETS PEQUENOS */
+@media screen and (max-width: 768px) {
+    nav {
+        padding: 10px 15px;
+        flex-direction: column;
+        gap: 10px;
+    }
     
     .cabecalho1 a {
-        padding: 10px;
+        font-size: 20px;
     }
-
+    
     .cabecalho2 a {
-        padding: 0 10px;
+        padding: 8px 12px;
+        font-size: 14px;
     }
-
+    
     .intro {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 20px;
         padding: 10px;
-    }
-
-    .intro p {
-        width: 450px;
-        max-width: 100%;
-    }
-
-    #pucrs {
-        border-radius: 0;
-    }
-
-    .intro button {
-        background-color: #80868038;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 16px; 
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 12px;
-        max-width: 95%;
     }
     
     .img-luto img {
-        vertical-align: middle;
-        margin-right: 8px;
-        width: 250px;
-        height: 250px;
-        border-radius: 30px;
-        margin-bottom: 10px;
+        height: 200px;
     }
     
-    /* Conteúdo do pop-out (oculto por padrão) */
+    .img-luto p {
+        font-size: 16px;
+    }
+    
+    .texto-intro p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+    
+    .br-1 {
+        font-size: 20px;
+    }
+    
     .popout-content {
-        display: none;
-        position: fixed;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background-color: #c2c2c2;
+        width: 95%;
         padding: 20px;
-        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-        z-index: 1;
-        width: 80%;
-        max-height: 85%;
-        max-width: 400px;
-        border-radius: 30px;
-
-        opacity: 0;
-        transition: opacity 0.5s ease;
-    }
-    
-    .scrollable-content {
-        max-height: 300px; /* Altura máxima do conteúdo rolável */
-        overflow-y: auto; /* Adiciona barra de rolagem vertical */
-        width: 100%;
-    }
-    
-    .scrollable-content p {
-        margin: 10px 0;
-    }
-
-    /* Exibe o pop-out quando a classe 'show' é adicionada */
-    .show {
-        display: block;
-        opacity: 1;
+        max-height: 90vh;
     }
     
     .popout-inner img {
-        max-width: 250px;
-        max-height: 250px;
-        border-radius: 30px;
+        max-width: 150px;
+        height: 150px;
     }
-
-    .img-luto {
-        background-color: transparent;
-        border: none;
-        cursor: pointer;
-        text-align: center;
-        margin: 10px; /* Espaçamento entre os botões */
+    
+    .scrollable-content {
+        max-height: calc(90vh - 220px);
     }
-
-    /* Estiliza o botão de fechar dentro do pop-out */
-    .close-button {
-        position: absolute;
-        top: 10px;
-        right: 10px;
-        background-color: transparent;
-        border: none;
-        font-size: 24px;
-        cursor: pointer;
+    
+    main {
+        width: 95%;
+        padding: 1rem;
     }
 }
 
-
-@media only screen and (min-width: 1024px) and (max-width: 1440px),
-       only screen and (min-width: 724px) and (max-width: 2000px) {
-
+/* SMARTPHONES */
+@media screen and (max-width: 480px) {
+    nav {
+        padding: 8px 10px;
+    }
+    
+    .cabecalho1 a {
+        font-size: 18px;
+    }
+    
+    .cabecalho2 a {
+        padding: 6px 10px;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+    
+    .container {
+        padding: 0 10px;
+    }
+    
+    #pucrs {
+        margin: 15px auto;
+        border-radius: 8px;
+    }
+    
     .intro {
-        padding: 20px;
+        grid-template-columns: 1fr;
+        gap: 15px;
+        padding: 5px;
+        margin: 20px 0;
     }
-
-    .intro p {
-        width: auto;
-    }
-
-    .intro button{
-        background-color: #80868042;
-        border: none;
-        color: white;
-        padding: 15px 32px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 18px; 
-        margin: 4px 2px;
-        cursor: pointer;
-        border-radius: 12px;
-        max-width: 33vh;
-
-        transition: transform 0.3s ease;
-    }
-
-    .intro button:hover {
-        transition: translatey(-10px);
+    
+    .img-luto {
+        padding: 15px;
     }
     
     .img-luto img {
-        vertical-align: middle;
-        margin-right: 8px;
-        width: 250px;
-        height: 250px;
-        border-radius: 30px;
-        margin-bottom: 10px;
+        height: 180px;
+        max-width: 180px;
     }
-
-/* Conteúdo do pop-out (oculto por padrão) */
-.popout-content {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #e0e0e0;
-    padding: 20px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    z-index: 1;
-    width: 80%;
-    max-width: 400px;
-    border-radius: 30px;
-
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-/* Exibe o pop-out quando a classe 'show' é adicionada */
-.show {
-    display: block;
-    opacity: 1;
-}
-
-.popout-inner img {
-    max-width: 250px;
-    max-height: 250px;
-    border-radius: 30px;
-}
-
-}
-
-/* responsivo integrantes */
-@media only screen and (max-width: 608px),
-       (max-aspect-ratio: 16/10) {
-    .space {
-        margin-left: 0;
-    }
-
-    .absd p {
+    
+    .img-luto p {
         font-size: 14px;
     }
-
-    .item img { 
-        border-radius: 20px;
-        width: 150px;
-        height: 150px;
-        margin-right: 20px;
-        margin-left: 20px;
-    }
-
+    
     .texto-intro p {
-        font-size: 16px;
-        margin: 0 10px;
+        font-size: 13px;
+        text-align: justify;
+        padding: 0 5px;
     }
-
-}
-
-/* responsivo form */
-
-@media only screen and (max-width: 608px) {
+    
+    .br-1 {
+        font-size: 18px;
+    }
+    
+    .popout-content {
+        width: 98%;
+        padding: 15px;
+        border-radius: 15px;
+    }
+    
+    .popout-inner img {
+        max-width: 120px;
+        height: 120px;
+    }
+    
+    .scrollable-content {
+        max-height: calc(90vh - 180px);
+    }
+    
+    .scrollable-content p {
+        font-size: 13px;
+    }
+    
+    .close-button {
+        width: 30px;
+        height: 30px;
+        font-size: 20px;
+        top: 10px;
+        right: 10px;
+    }
+    
     main {
-        width: 75%;
-    }
-    #new-question-form {
         width: 100%;
+        padding: 0.5rem;
+    }
+    
+    form input, form textarea {
+        font-size: 16px; /* Evita zoom no iOS */
+    }
+    
+    #questions li {
+        padding: 1rem;
     }
 }
 
-@media only screen and (min-width: 1440px) and (max-width: 1680px) {
-    main {
-        width: 70%;
+/* SMARTPHONES MUITO PEQUENOS */
+@media screen and (max-width: 360px) {
+    .cabecalho1 a {
+        font-size: 16px;
     }
-}
-
-@media only screen and (min-width: 900px) and (max-width: 1050px) {
-    main {
-        width: 90%;
+    
+    .img-luto img {
+        height: 150px;
+        max-width: 150px;
     }
-}
-
-@media only screen and (min-width: 1024px) and (max-width: 1440px) {
-    main {
-        width: 75%;
+    
+    .texto-intro p {
+        font-size: 12px;
     }
-}
-
-@media only screen and (min-width: 1680px) and (max-width: 1920px) {
-    main {
-        width: 65%;
+    
+    .br-1 {
+        font-size: 16px;
+    }
+    
+    .scrollable-content p {
+        font-size: 12px;
     }
 }
